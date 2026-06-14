@@ -1,0 +1,45 @@
+% ============================================================
+% STYLE DES CHAPITRES
+% ============================================================
+
+\makeatletter
+\newlength\dlf@normtxtw
+\setlength\dlf@normtxtw{\textwidth}
+\newsavebox{\feline@chapter}
+
+\newcommand\feline@chapter@marker[1][4cm]{%
+  \sbox\feline@chapter{%
+    \resizebox{!}{#1}{%
+      \fboxsep=1pt%
+      \colorbox{bleuLille1!80!black}{%
+        \parbox[t][3mm][c]{2.7mm}{%
+          \centering\color{white}\bfseries\sffamily\scriptsize\thechapter%
+        }%
+      }%
+    }%
+  }%
+  \rotatebox{90}{%
+    \resizebox{\heightof{\usebox{\feline@chapter}}+\depthof{\usebox{\feline@chapter}}}{!}{%
+      \scshape\so\@chapapp%
+    }%
+  }\quad%
+  \raisebox{\depthof{\usebox{\feline@chapter}}}{\usebox\feline@chapter}%
+}
+
+\newcommand\feline@chm[1][4cm]{%
+  \sbox\feline@chapter{\feline@chapter@marker[#1]}%
+  \makebox[0pt][l]{\makebox[1cm][r]{\usebox\feline@chapter}}%
+}
+
+\makechapterstyle{daleif1}{%
+  \renewcommand\chapnamefont{\normalfont\Large\scshape\raggedleft\so}
+  \renewcommand\chaptitlefont{\normalfont\huge\bfseries\scshape\color{bleuLille1!80!black}}
+  \renewcommand\chapternamenum{}
+  \renewcommand\printchaptername{}
+  \renewcommand\printchapternum{\null\hspace{\dimexpr\textwidth-1cm\relax}\feline@chm[0.35cm]\par}
+  \renewcommand\afterchapternum{\par\vskip\midchapskip}
+  \renewcommand\printchaptertitle[1]{\chaptitlefont\raggedleft ##1\par}
+}
+\makeatother
+
+\chapterstyle{daleif1}

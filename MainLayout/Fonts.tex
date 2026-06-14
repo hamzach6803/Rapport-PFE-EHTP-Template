@@ -1,0 +1,39 @@
+% ============================================================
+% POLICES ET LANGUES
+% ============================================================
+
+\defaultfontfeatures{Ligatures=TeX}
+
+\setmainlanguage{french}
+\setotherlanguage{arabic}
+
+\IfFontExistsTF{Latin Modern Roman}{%
+  \setmainfont{Latin Modern Roman}
+}{}
+
+\IfFontExistsTF{Latin Modern Sans}{%
+  \setsansfont{Latin Modern Sans}
+}{}
+
+\IfFileExists{assets/fonts/amiri/Amiri-Regular.ttf}{%
+  \newfontfamily\arabicfont[
+    Script=Arabic,
+    Scale=1.1,
+    Path=./assets/fonts/amiri/,
+    Extension=.ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+  ]{Amiri}
+}{%
+  \IfFontExistsTF{Amiri}{%
+    \newfontfamily\arabicfont[Script=Arabic,Scale=1.1]{Amiri}
+  }{%
+    \IfFontExistsTF{Arial}{%
+      \newfontfamily\arabicfont[Script=Arabic,Scale=1.1]{Arial}
+    }{%
+      \newfontfamily\arabicfont[Script=Arabic,Scale=1.1]{Latin Modern Roman}
+    }%
+  }%
+}

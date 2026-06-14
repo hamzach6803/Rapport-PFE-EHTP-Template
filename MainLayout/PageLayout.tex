@@ -1,0 +1,30 @@
+% ============================================================
+% MISE EN PAGE
+% ============================================================
+
+\geometry{
+  a4paper,
+  left=2.5cm,
+  right=2.5cm,
+  top=2.8cm,
+  bottom=2.8cm,
+  headheight=21pt
+}
+
+\OnehalfSpacing
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyhead[R]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}

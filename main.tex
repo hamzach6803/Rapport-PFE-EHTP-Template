@@ -1,0 +1,58 @@
+% ============================================================
+% TEMPLATE DE RAPPORT PFE
+% ============================================================
+% Compilation depuis ce dossier :
+%   lualatex -interaction=nonstopmode main.tex
+
+\documentclass[14pt,a4paper,oneside]{memoir}
+\setlength{\headheight}{21pt}
+
+% Permet de trouver les fichiers locaux du template.
+\makeatletter
+\def\input@path{{./}}
+\makeatother
+
+% Configuration commune au rapport.
+\input{MainLayout/ConfigPackages}
+\graphicspath{{./}}
+\input{MainLayout/Fonts}
+\input{MainLayout/PageLayout}
+\input{MainLayout/ChapterStyle_1}
+\input{MainLayout/ReportSettings}
+
+% Configuration propre au template.
+\input{Variables}
+\input{TitlePage}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+
+\begin{document}
+
+\thispagestyle{empty}
+\TemplateTitlePage
+
+% -------------------- Pages liminaires --------------------
+\input{FrontMatter/Dedicace}
+\input{FrontMatter/Remerciements}
+\input{FrontMatter/ResumeArabe}
+\input{FrontMatter/Resume}
+\input{FrontMatter/Abstract}
+
+% -------------------- Sommaires et listes --------------------
+\input{FrontMatter/Listes}
+
+% -------------------- Corps du rapport --------------------
+\input{Chapters/Introduction}
+\input{Chapters/Chapter1}
+\input{Chapters/Chapter2}
+\input{Chapters/Chapter3}
+\input{Chapters/Chapter4}
+
+% -------------------- Fin du rapport --------------------
+\input{BackMatter/Conclusion}
+\input{BackMatter/References}
+\input{BackMatter/Annexes}
+
+\end{document}

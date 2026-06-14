@@ -1,0 +1,57 @@
+% ============================================================
+% PAGE DE GARDE DU TEMPLATE
+% ============================================================
+
+\newcommand{\TemplateTitlePage}{%
+  \newgeometry{hmargin=2cm, vmargin=1.7cm}
+  \TemplateCoverBackground{\CoverBackground}
+
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \TemplateImage[width=0.9\textwidth]{\LogoLeft}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \TemplateImage[width=\textwidth]{\LogoCenter}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+      \centering
+      \TemplateImage[width=1.3\textwidth]{\LogoRight}
+    \end{minipage}
+  \end{figure}
+
+  \centering
+  {\Large \ReportType\par}
+  \vspace{1cm}
+  {\large Durée de stage : \InternshipDuration\par}
+  \vspace{1cm}
+  \centerline{\line(1,0){500}}
+  \vspace{0.48cm}
+  {\huge \textbf{\ReportTitle}\par}
+  \vspace{0.35cm}
+  \centerline{\line(1,0){500}}
+  \vspace{0.5cm}
+  Réalisé par l'élève ingénieur en 3\textsuperscript{e} année de la \StudentProgram :\par
+  \vspace{3mm}
+  {\large\textbf{\textsc{\StudentName}}\par}
+  \vspace{0.5cm}
+  Sous la supervision de :\par
+  \vspace{2mm}
+  {\large\bfseries \textsc{\SupervisorOne}\\\textsc{\SupervisorTwo}\par}
+  \vspace{0.7cm}
+  \begin{flushleft}
+    $\bullet$ \underline{Organisme d'accueil} : \HostOrganization
+  \end{flushleft}
+  \TemplateImage[width=2.6cm]{\HostLogo}
+  \hfill\\
+  \begin{center}
+    Année académique : \textbf{\AcademicYear}
+  \end{center}
+
+  \restoregeometry
+  \cleardoublepage
+}

@@ -1,0 +1,49 @@
+% ============================================================
+% REGLAGES DU RAPPORT
+% ============================================================
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+
+\captionsetup{
+  font={small,it},
+  labelfont={bf,color=bleuLille1!80!black},
+  textfont={color=black}
+}
+
+\newcommand{\figref}[1]{\textcolor{bleuLille1}{\hyperref[#1]{\textit{Figure~\ref*{#1}}}}}
+\newcommand{\tabref}[1]{\textcolor{bleuLille1}{\hyperref[#1]{\textit{Table~\ref*{#1}}}}}
+
+\newcommand{\ArabicResumeLineSpacing}{\OnehalfSpacing}
+
+\newcommand{\TemplateMissingGraphic}[1]{%
+  \fbox{%
+    \begin{minipage}[c][2.2cm][c]{0.8\linewidth}
+      \centering\scriptsize Image manquante\\\texttt{#1}
+    \end{minipage}%
+  }%
+}
+
+\newcommand{\TemplateImage}[2][]{%
+  \IfFileExists{#2}{%
+    \includegraphics[#1]{#2}%
+  }{%
+    \TemplateMissingGraphic{#2}%
+  }%
+}
+
+\newcommand{\TemplateCoverBackground}[1]{%
+  \IfFileExists{#1}{%
+    \ThisCenterWallPaper{1.2}{#1}%
+  }{}%
+}
+
+\newcommand{\chaptertoc}{%
+  \startcontents[chapters]%
+  \noindent{\large\bfseries Sommaire}\par
+  \noindent\hrulefill\par
+  \vspace{0.15cm}
+  \printcontents[chapters]{l}{1}{\setcounter{tocdepth}{2}}%
+  \vspace{0.05cm}
+  \noindent\hrulefill\par
+}
