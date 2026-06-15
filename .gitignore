@@ -17,9 +17,6 @@
 *.toc
 *.xdv
 
-# Generated PDF output
-main.pdf
-
 # Editors and OS files
 .DS_Store
 Thumbs.db
