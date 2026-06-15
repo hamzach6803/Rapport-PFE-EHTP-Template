@@ -541,19 +541,3 @@ Avec `latexmk`:
 latexmk main.tex
 ```
 
-## GitHub Actions
-
-À chaque `push` ou `pull request`, GitHub Actions compile `main.tex` et publie `main.pdf` comme artefact téléchargeable.
-
-## Publication sur GitHub
-
-```powershell
-git init
-git add .
-git commit -m "Initial GitHub-ready LaTeX template"
-git branch -M main
-git remote add origin https://github.com/USER/REPO.git
-git push -u origin main
-```
-
-Remplace `USER` et `REPO` par ton compte GitHub et le nom du dépôt.
