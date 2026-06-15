@@ -1,11 +1,183 @@
-\chapter{Présentation générale}\label{chap:presentation-generale}
+\chapter{Exemples d'utilisation du template}\label{chap:exemples-utilisation}
 \chaptertoc
 
-\section{Contexte du projet}
-Décrire le contexte général du projet.
+Ce chapitre unique montre comment utiliser les éléments principaux du template. Il peut être remplacé par le contenu réel du rapport lorsque la rédaction commence.
 
-\section{Organisme d'accueil}
-Présenter l'organisme d'accueil et son rôle dans le projet.
+\section{Modifier les informations du rapport}
 
-\section{Problématique et objectifs}
-Formuler la problématique, les objectifs principaux et les objectifs spécifiques.
+Les informations de la page de garde sont centralisées dans le fichier \texttt{Variables.tex}. Par exemple, il suffit de modifier les commandes suivantes pour adapter le rapport :
+
+\begin{verbatim}
+\newcommand{\ReportTitle}{Titre du projet}
+\newcommand{\StudentName}{Prénom NOM}
+\newcommand{\SupervisorOne}{Pr. Nom Prénom}
+\newcommand{\AcademicYear}{2025/2026}
+\end{verbatim}
+
+Les fichiers d'images déclarés dans ce même fichier doivent être placés à la racine du projet, ou bien le chemin doit être adapté.
+
+\section{Insérer une figure}
+
+La figure~\ref{fig:logo-ehtp-exemple} montre un exemple d'insertion d'image avec une légende et une étiquette de référence.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.28\textwidth]{ehtp.png}
+  \caption{Exemple de figure insérée dans le rapport.}
+  \label{fig:logo-ehtp-exemple}
+\end{figure}
+
+On peut ensuite citer cette figure dans le texte avec \verb|\figref{fig:logo-ehtp-exemple}|, ce qui donne : \figref{fig:logo-ehtp-exemple}.
+
+\section{Insérer un tableau}
+
+Le tableau~\ref{tab:exemple-comparaison} donne un exemple simple de tableau avec le package \texttt{booktabs}.
+
+\begin{table}[H]
+  \centering
+  \caption{Exemple de tableau de synthèse.}
+  \label{tab:exemple-comparaison}
+  \begin{tabular}{>{\raggedright\arraybackslash}p{0.20\textwidth}>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.30\textwidth}}
+    \toprule
+    Élément & Utilisation & Fichier concerné \\
+    \midrule
+    Variables & Informations de la page de garde & \texttt{Variables.tex} \\
+    Chapitre & Contenu principal du rapport & \texttt{Chapter1.tex} \\
+    Mise en page & Marges, entêtes et styles & \texttt{MainLayout/} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Pour citer le tableau dans le texte, utiliser \verb|\tabref{tab:exemple-comparaison}| : \tabref{tab:exemple-comparaison}.
+
+\section{Insérer une équation}
+
+Les équations peuvent être numérotées et référencées. L'équation~\ref{eq:exemple-erreur} donne un exemple de calcul d'erreur quadratique moyenne.
+
+\begin{equation}
+  \mathrm{RMSE}=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}
+  \label{eq:exemple-erreur}
+\end{equation}
+
+Cette forme est utile pour présenter une métrique d'évaluation, par exemple dans un projet de modélisation ou de downscaling.
+
+
+\section{Insérer un code Python coloré}
+
+Le template utilise le package \texttt{listings} pour afficher du code sans dépendance externe. Le style Python est configuré dans \texttt{MainLayout/ReportSettings.tex} avec le nom \texttt{pythonstyle}.
+
+Pour insérer un code Python coloré, on utilise l'environnement \texttt{lstlisting}. Le bloc doit avoir une \texttt{caption} pour apparaître comme un élément numéroté, et un \texttt{label} pour pouvoir être référencé dans le texte.
+
+\begin{lstlisting}[style=pythonstyle, caption={Exemple de calcul de RMSE en Python.}, label={lst:python-rmse}]
+import numpy as np
+
+observations = np.array([18.2, 19.0, 21.4, 20.1])
+predictions = np.array([18.0, 19.5, 20.8, 20.4])
+
+rmse = np.sqrt(np.mean((observations - predictions) ** 2))
+print(f"RMSE = {rmse:.2f}")
+\end{lstlisting}
+
+Pour citer ce code dans le texte, on écrit \verb|\coderef{lst:python-rmse}|, ce qui donne : \coderef{lst:python-rmse}.
+
+La méthode est donc la suivante :
+
+\begin{itemize}
+  \item ajouter un label unique dans le bloc de code, par exemple avec le préfixe \texttt{lst:} ;
+  \item utiliser le préfixe \texttt{lst:} pour reconnaître facilement les labels de code ;
+  \item citer le code avec \verb|\coderef{lst:python-rmse}|.
+\end{itemize}
+
+
+\section{Insérer une remarque colorée}
+
+Le template propose deux boîtes colorées prêtes à utiliser : \texttt{remarkbox} pour une remarque et \texttt{keybox} pour un point important. Leur style est configuré dans \texttt{MainLayout/ReportSettings.tex}.
+
+\begin{remarkbox}[Remarque]
+Cette boîte sert à attirer l'attention sur une précision, une hypothèse ou une limite importante du travail.
+\end{remarkbox}
+
+\begin{keybox}[Point clé]
+Cette boîte met en évidence une idée principale, une conclusion intermédiaire ou une information à retenir.
+\end{keybox}
+
+Pour insérer une remarque colorée dans ton rapport, utilise :
+
+\begin{verbatim}
+\begin{remarkbox}[Remarque]
+Texte de la remarque.
+\end{remarkbox}
+\end{verbatim}
+
+Pour insérer un point clé coloré, utilise :
+
+\begin{verbatim}
+\begin{keybox}[Point clé]
+Texte important à retenir.
+\end{keybox}
+\end{verbatim}
+
+Pour changer les couleurs de ces boîtes, modifie dans \texttt{ReportSettings.tex} les couleurs \texttt{remarkbackground}, \texttt{remarkframe}, \texttt{keybackground} et \texttt{keyframe}.
+
+\section{Utiliser des listes}
+
+Les listes permettent de présenter clairement les objectifs, les étapes ou les contributions du projet.
+
+\subsection{Liste simple avec itemize}
+
+\begin{itemize}
+  \item définir le contexte et la problématique ;
+  \item présenter les données et la méthode ;
+  \item analyser les résultats obtenus ;
+  \item proposer des perspectives d'amélioration.
+\end{itemize}
+
+\subsection{Liste numérotée avec enumerate}
+
+\begin{enumerate}
+  \item Collecter les données.
+  \item Nettoyer et organiser les fichiers.
+  \item Appliquer la méthode choisie.
+  \item Interpréter les résultats.
+\end{enumerate}
+
+\subsection{Liste descriptive avec description}
+
+\begin{description}
+  \item[Objectif] Expliquer clairement le but du travail.
+  \item[Méthode] Présenter les outils, données et hypothèses.
+  \item[Résultat] Résumer les principaux enseignements.
+\end{description}
+
+\subsection{Liste avec puces personnalisées}
+
+Le package \texttt{enumitem} permet de changer les puces directement dans l'environnement :
+
+\begin{itemize}[label=\textcolor{bleuLille1}{$\blacktriangleright$}]
+  \item première idée importante ;
+  \item deuxième idée importante ;
+  \item troisième idée importante.
+\end{itemize}
+
+On peut aussi utiliser des tirets :
+
+\begin{itemize}[label=--]
+  \item élément court ;
+  \item autre élément court.
+\end{itemize}
+
+\section{Ajouter ou retirer des chapitres}
+
+Dans cette version, le fichier \texttt{main.tex} inclut uniquement :
+
+\begin{verbatim}
+\input{Chapters/Chapter1}
+\end{verbatim}
+
+Pour ajouter un deuxième chapitre, créer par exemple \texttt{Chapters/Chapter2.tex}, puis ajouter dans \texttt{main.tex} :
+
+\begin{verbatim}
+\input{Chapters/Chapter2}
+\end{verbatim}
+
+Pour garder un rapport minimal, il suffit de conserver uniquement le chapitre actuel.

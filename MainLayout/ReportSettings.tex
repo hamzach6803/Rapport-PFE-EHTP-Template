@@ -1,20 +1,99 @@
 % ============================================================
-% REGLAGES DU RAPPORT
+% RÉGLAGES DU RAPPORT
 % ============================================================
 
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{3}
 
-\captionsetup{
-  font={small,it},
-  labelfont={bf,color=bleuLille1!80!black},
-  textfont={color=black}
+\captionnamefont{\normalfont\small\bfseries\color{bleuLille1!80!black}}
+\captiontitlefont{\normalfont\small\itshape}
+\captiondelim{ : }
+\gappto\captionsfrench{%
+  \renewcommand{\figurename}{Figure}%
+  \renewcommand{\tablename}{Table}%
 }
+\AtBeginDocument{%
+  \renewcommand{\figurename}{Figure}%
+  \renewcommand{\tablename}{Table}%
+}
+\makeatletter
+\renewcommand{\fnum@figure}{\normalfont\figurename~\thefigure}
+\renewcommand{\fnum@table}{\normalfont\tablename~\thetable}
+\makeatother
+
+
+
+% Boîtes colorées pour remarques et points clés
+\definecolor{remarkbackground}{RGB}{240,248,255}
+\definecolor{remarkframe}{RGB}{22,150,255}
+\definecolor{keybackground}{RGB}{255,248,225}
+\definecolor{keyframe}{RGB}{210,140,20}
+
+\newtcolorbox{remarkbox}[1][Remarque]{
+  enhanced,
+  breakable,
+  colback=remarkbackground,
+  colframe=remarkframe,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=#1,
+  boxrule=0.8pt,
+  arc=2mm,
+  left=2mm,
+  right=2mm,
+  top=1mm,
+  bottom=1mm
+}
+
+\newtcolorbox{keybox}[1][Point clé]{
+  enhanced,
+  breakable,
+  colback=keybackground,
+  colframe=keyframe,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=#1,
+  boxrule=0.8pt,
+  arc=2mm,
+  left=2mm,
+  right=2mm,
+  top=1mm,
+  bottom=1mm
+}
+% Style des blocs de code
+\definecolor{codebackground}{RGB}{248,250,252}
+\definecolor{codekeyword}{RGB}{0,92,175}
+\definecolor{codecomment}{RGB}{88,125,64}
+\definecolor{codestring}{RGB}{170,75,45}
+\definecolor{coderule}{RGB}{205,213,223}
+
+\lstdefinestyle{pythonstyle}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{codekeyword}\bfseries,
+  commentstyle=\color{codecomment}\itshape,
+  stringstyle=\color{codestring},
+  numbers=left,
+  numberstyle=\tiny\color{darkgray},
+  stepnumber=1,
+  numbersep=8pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{coderule},
+  backgroundcolor=\color{codebackground},
+  captionpos=b,
+  tabsize=4
+}
+
+\renewcommand{\lstlistingname}{Code}
+\newcommand{\coderef}[1]{\textcolor{bleuLille1}{\hyperref[#1]{\textit{Code~\ref*{#1}}}}}
 
 \newcommand{\figref}[1]{\textcolor{bleuLille1}{\hyperref[#1]{\textit{Figure~\ref*{#1}}}}}
 \newcommand{\tabref}[1]{\textcolor{bleuLille1}{\hyperref[#1]{\textit{Table~\ref*{#1}}}}}
 
 \newcommand{\ArabicResumeLineSpacing}{\OnehalfSpacing}
+\newcommand{\arabicresumefont}{\arabicfont}
 
 \newcommand{\TemplateMissingGraphic}[1]{%
   \fbox{%
@@ -34,7 +113,7 @@
 
 \newcommand{\TemplateCoverBackground}[1]{%
   \IfFileExists{#1}{%
-    \ThisCenterWallPaper{1.2}{#1}%
+    \ThisCenterWallPaper{1.0}{#1}%
   }{}%
 }
 

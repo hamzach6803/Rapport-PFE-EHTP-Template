@@ -20,7 +20,7 @@
   }%
   \rotatebox{90}{%
     \resizebox{\heightof{\usebox{\feline@chapter}}+\depthof{\usebox{\feline@chapter}}}{!}{%
-      \scshape\so\@chapapp%
+      \@chapapp%
     }%
   }\quad%
   \raisebox{\depthof{\usebox{\feline@chapter}}}{\usebox\feline@chapter}%
@@ -32,8 +32,8 @@
 }
 
 \makechapterstyle{daleif1}{%
-  \renewcommand\chapnamefont{\normalfont\Large\scshape\raggedleft\so}
-  \renewcommand\chaptitlefont{\normalfont\huge\bfseries\scshape\color{bleuLille1!80!black}}
+  \renewcommand\chapnamefont{\normalfont\Large\raggedleft}
+  \renewcommand\chaptitlefont{\normalfont\huge\bfseries\color{bleuLille1!80!black}}
   \renewcommand\chapternamenum{}
   \renewcommand\printchaptername{}
   \renewcommand\printchapternum{\null\hspace{\dimexpr\textwidth-1cm\relax}\feline@chm[0.35cm]\par}

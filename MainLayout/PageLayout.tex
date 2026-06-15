@@ -15,16 +15,16 @@
 \setlength{\parindent}{1.2em}
 \setlength{\parskip}{0.2em}
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\nouppercase{\leftmark}}
-\fancyhead[R]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0pt}
+\makepagestyle{pfe}
+\makeoddhead{pfe}{\leftmark}{}{\thepage}
+\makeevenhead{pfe}{\thepage}{}{\leftmark}
+\makeheadrule{pfe}{\textwidth}{0.4pt}
+\makeoddfoot{pfe}{}{}{}
+\makeevenfoot{pfe}{}{}{}
+\pagestyle{pfe}
 
-\fancypagestyle{plain}{%
-  \fancyhf{}%
-  \fancyhead[R]{\thepage}%
-  \renewcommand{\headrulewidth}{0pt}%
-  \renewcommand{\footrulewidth}{0pt}%
-}
+\makepagestyle{plain}
+\makeoddhead{plain}{}{}{\thepage}
+\makeevenhead{plain}{\thepage}{}{}
+\makeoddfoot{plain}{}{}{}
+\makeevenfoot{plain}{}{}{}
